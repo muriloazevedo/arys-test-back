@@ -19,24 +19,27 @@ $form = new Form\Validator([
 */
 
 //if ( $form->validate($_POST) ) {
+	// deveria receber o json encode do body, mas coloquei $_POST para fim  de testes
+	var_dump($_POST);
 	$data = $_POST;
+	$user = $data;
 
 	$user['datacriacao'] = (new DateTime('NOW'))->format(DateTime::ISO8601);
 	$user['salt'] = bin2hex(openssl_random_pseudo_bytes(16));
 	// creio que usar password_hash() seria bem melhor pois utiliza bcrypt http://php.net/manual/pt_BR/function.password-hash.php
-	$user['senha'] = password_hash($user['senha']);
+	$user['senha'] = password_hash($user['senha'], PASSWORD_BCRYPT);
 
-	$sql_insert = 'INSERT INTO usuarios VALUES(:nome, :email, :senha, :username, :datacriacao, :salt)';
+	$sql_insert = 'INSERT INTO usuarios VALUES(:nome, :sobrenome, :senha, :username, :datacriacao, :salt)';
 	try{
-		$stmt = $pdo->prepare($sql_insert);
-	  	$stmt->execute(array(
+		$stmt = $db->prepare($sql_insert);
+	  	$stmt->execute([
 	    	':nome' => $user['nome'],
-	    	':email' => $user['email'],
+	    	':sobrenome' => $user['sobrenome'],
 	    	'salt' => $user['salt'],
 	    	':username' => $user['username'],
 	    	':datacriacao' => $user['datacriacao'],
 	    	'senha'=> $user['senha']
-	  	));
+	  	]);
   		echo $stmt->rowCount(); 
 	} catch(PDOException $e) {
   	echo 'Error: ' . $e->getMessage();
