@@ -9,20 +9,22 @@ use Rakit\Validation;
 
 
 // create the form with rules
+/*
 $form = new Form\Validator([
     'nome' => ['required', 'trim', 'max_length' => 255],
     'email' => ['required', 'email'],
     'username' => ['required'],
     'senha' => ['required']
 ]);
+*/
 
-if ( $form->validate($_POST) ) {
-	$data = $form->getValues();
+//if ( $form->validate($_POST) ) {
+	$data = $_POST;
 
 	$user['datacriacao'] = (new DateTime('NOW'))->format(DateTime::ISO8601);
 	$user['salt'] = bin2hex(openssl_random_pseudo_bytes(16));
 	// creio que usar password_hash() seria bem melhor pois utiliza bcrypt http://php.net/manual/pt_BR/function.password-hash.php
-	$user['senha'] = sha256($data['senha']); 
+	$user['senha'] = password_hash($user['senha']);
 
 	$sql_insert = 'INSERT INTO usuarios VALUES(:nome, :email, :senha, :username, :datacriacao, :salt)';
 	try{
@@ -39,11 +41,11 @@ if ( $form->validate($_POST) ) {
 	} catch(PDOException $e) {
   	echo 'Error: ' . $e->getMessage();
   }
-}else {
+//}else {
     // $_POST data is not valid
-    $errors = $form->getErrors(); // contains the errors
-    $values = $form->getValues(); // can be used to repopulate the form
+    // $errors = $form->getErrors(); // contains the errors
+    // $values = $form->getValues(); // can be used to repopulate the form
 
-    echo json_encode(['errors' => $errors]);
-    exit;
-}
+    // echo json_encode(['errors' => $errors]);
+    // exit;
+// }
