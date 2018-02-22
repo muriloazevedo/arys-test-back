@@ -1,11 +1,10 @@
 CREATE TABLE IF NOT EXISTS usuarios (
-	id serial,
+	id serial PRIMARY KEY,
 	nome text,
 	sobrenome text,
 	username text,
 	senha text,
 	salt text,
-	datacriacao timestamp,
-	PRIMARY KEY( id )
+	datacriacao timestamp
 );
 

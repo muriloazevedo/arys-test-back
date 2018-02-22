@@ -1,0 +1,20 @@
+{
+    "name": "rlanvin/php-form",
+    "type": "library",
+    "description": "Lightweight form validation library for PHP",
+    "keywords": ["form","validation"],
+    "homepage": "https://github.com/rlanvin/php-form",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+        "ext-mbstring":"*"
+    },
+    "suggest": {
+        "ext-intl": "Intl extension is useful for validating formatted numbers"
+    },
+    "autoload": {
+        "psr-4": {
+            "Form\\": "src/"
+        }
+    }
+}

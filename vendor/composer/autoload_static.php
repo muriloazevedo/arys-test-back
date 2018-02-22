@@ -11,12 +11,30 @@ class ComposerStaticInit7564cc912f704dc8d0e5ec8134d4a10e
         array (
             'Rakit\\Validation\\' => 17,
         ),
+        'F' => 
+        array (
+            'Form\\' => 5,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Rakit\\Validation\\' => 
         array (
             0 => __DIR__ . '/..' . '/rakit/validation/src',
+        ),
+        'Form\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rlanvin/php-form/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'V' => 
+        array (
+            'Valitron' => 
+            array (
+                0 => __DIR__ . '/..' . '/vlucas/valitron/src',
+            ),
         ),
     );
 
@@ -25,6 +43,7 @@ class ComposerStaticInit7564cc912f704dc8d0e5ec8134d4a10e
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit7564cc912f704dc8d0e5ec8134d4a10e::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit7564cc912f704dc8d0e5ec8134d4a10e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit7564cc912f704dc8d0e5ec8134d4a10e::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

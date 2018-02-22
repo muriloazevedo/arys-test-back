@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Rakit\\Validation\\' => array($vendorDir . '/rakit/validation/src'),
+    'Form\\' => array($vendorDir . '/rlanvin/php-form/src'),
 );

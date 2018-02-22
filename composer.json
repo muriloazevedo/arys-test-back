@@ -1,6 +1,7 @@
 {
     "require": {
         
-        "rlanvin/php-form": "2.*"
+        "rlanvin/php-form": "2.*",
+        "vlucas/valitron": "^1.4"
     }
 }
